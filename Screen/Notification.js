@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import {View,Text,StyleSheet,FlatList,TouchableOpacity,Alert,} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -43,29 +36,25 @@ const NotificationScreen = () => {
   const [selectedNotifications, setSelectedNotifications] = useState([]);
   const [selectionMode, setSelectionMode] = useState(false);
 
-  // Handle long press to start selection mode or toggle selection
   const handleLongPress = (id) => {
-    setSelectionMode(true); // Enable selection mode
-    toggleSelection(id); // Select the long-pressed notification
+    setSelectionMode(true); 
+    toggleSelection(id); 
   };
 
-  // Handle single tap to toggle selection (only in selection mode)
   const handlePress = (id) => {
     if (selectionMode) {
       toggleSelection(id);
     }
   };
 
-  // Toggle selection for a notification
   const toggleSelection = (id) => {
     setSelectedNotifications((prevSelected) =>
       prevSelected.includes(id)
-        ? prevSelected.filter((selectedId) => selectedId !== id) // Deselect
-        : [...prevSelected, id] // Select
+        ? prevSelected.filter((selectedId) => selectedId !== id)
+        : [...prevSelected, id]
     );
   };
 
-  // Handle delete action
   const handleDelete = () => {
     if (selectedNotifications.length === 0) {
       Alert.alert("No Notifications Selected", "Please select a notification to delete.");
@@ -77,8 +66,8 @@ const NotificationScreen = () => {
         (notification) => !selectedNotifications.includes(notification.id)
       )
     );
-    setSelectedNotifications([]); // Clear selection after deletion
-    setSelectionMode(false); // Exit selection mode
+    setSelectedNotifications([]); 
+    setSelectionMode(false);
   };
 
   const renderItem = ({ item }) => {
@@ -106,7 +95,6 @@ const NotificationScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
@@ -117,7 +105,6 @@ const NotificationScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Notification List */}
       <FlatList
         data={notifications}
         renderItem={renderItem}
@@ -131,10 +118,10 @@ const NotificationScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8f9fb", // Matches the light gray background in the image
+    backgroundColor: "#f8f9fb",
   },
   header: {
-    backgroundColor: "#006d7d", // Matches the teal header color
+    backgroundColor: "#006d7d", 
     padding: 16,
     flexDirection: "row",
     alignItems: "center",
@@ -160,14 +147,14 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   selectedNotificationCard: {
-    backgroundColor: "#e0f7fa", // Light blue for selected notifications
+    backgroundColor: "#e0f7fa", 
     borderColor: "#00796b",
     borderWidth: 1,
   },
   notificationTitle: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#2d2d2d", // Dark gray color
+    color: "#2d2d2d", 
     marginBottom: 8,
   },
   notificationDetails: {
@@ -177,20 +164,20 @@ const styles = StyleSheet.create({
   },
   category: {
     fontSize: 14,
-    color: "#7a7a7a", // Light gray color for category
+    color: "#7a7a7a", 
   },
   arrow: {
     fontSize: 14,
-    color: "#7a7a7a", // Arrow separator color
+    color: "#7a7a7a",
   },
   item: {
     fontSize: 14,
-    color: "#1792e8", // Blue color for the clickable text
+    color: "#1792e8", 
     fontWeight: "600",
   },
   timestamp: {
     fontSize: 12,
-    color: "#a3a3a3", // Light gray color for the timestamp
+    color: "#a3a3a3",
   },
 });
 
