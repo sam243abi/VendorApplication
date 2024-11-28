@@ -192,12 +192,14 @@ const styles = StyleSheet.create({
   { flex: 1, 
     backgroundColor: "#f4f4f4" 
   },
-  header: { 
+  header: 
+  { 
     padding: 16, 
     backgroundColor: "#007BFF", 
     alignItems: "center" 
   },
-  headerText: { 
+  headerText: 
+  { 
     color: "#fff", 
     fontSize: 18, 
     fontWeight: "bold" 
@@ -206,17 +208,20 @@ const styles = StyleSheet.create({
   { 
     padding: 16 
   },
-  card: { 
+  card: 
+  { 
     backgroundColor: "#fff", 
     borderRadius: 8, 
     marginBottom: 16, 
     padding: 16 
   },
-  row: { 
+  row: 
+  { 
     flexDirection: "row", 
     alignItems: "center" 
   },
-  image: { 
+  image: 
+  { 
     width: 60, 
     height: 60, 
     marginRight: 16 
@@ -235,52 +240,95 @@ const styles = StyleSheet.create({
     fontSize: 14, 
     color: "#888" 
   },
-  priceSection: { 
+  priceSection: 
+  { 
     flexDirection: "row", 
     justifyContent: "space-between", 
-    marginTop: 16 },
-  priceBlock: { 
-    alignItems: "center" },
-  priceHeading: { 
+    marginTop: 16 
+  },
+  priceBlock: 
+  { 
+    alignItems: "center" 
+  },
+  priceHeading: 
+  { 
     fontSize: 14, 
-    color: "#888" },
-  priceValue: { 
+    color: "#888" 
+  },
+  priceValue: 
+  { 
     fontSize: 14, 
-    fontWeight: "bold" },
-  bottomRow: { 
+    fontWeight: "bold" 
+  },
+  bottomRow: 
+  { 
     flexDirection: "row", 
     justifyContent: "space-between", 
-    marginTop: 16 },
-  switchContainer: { 
+    marginTop: 16 
+  },
+  switchContainer: 
+  { 
     flexDirection: "row", 
-    alignItems: "center" },
-  publishedText: { 
-    marginLeft: 8 },
-  actions: { flexDirection: "row", alignItems: "center", gap: 16 },
-  modalContainer: {
+    alignItems: "center" 
+  },
+  publishedText: 
+  { 
+    marginLeft: 8 
+  },
+  actions: 
+  {
+     flexDirection: "row", 
+    alignItems: "center", 
+    gap: 16 
+  },
+  modalContainer: 
+  {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  modalContent: {
+  modalContent: 
+  {
     width: "90%",
     backgroundColor: "#fff",
     borderRadius: 8,
     padding: 16,
   },
-  modalTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 16 },
-  input: {
+  modalTitle: 
+  { fontSize: 18, 
+    fontWeight: "bold", 
+    marginBottom: 16 
+  },
+  input: 
+  {
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 8,
     padding: 8,
     marginBottom: 16,
   },
-  modalButtons: { flexDirection: "row", justifyContent: "space-between" },
-  saveButton: { backgroundColor: "#007BFF", padding: 10, borderRadius: 8 },
-  cancelButton: { backgroundColor: "red", padding: 10, borderRadius: 8 },
-  buttonText: { color: "#fff", fontWeight: "bold" },
+  modalButtons: 
+  { 
+    flexDirection: "row", 
+    justifyContent: "space-between" 
+  },
+  saveButton: 
+  { 
+    backgroundColor: "#007BFF", 
+    padding: 10, 
+    borderRadius: 8 
+  },
+  cancelButton: 
+  { 
+    backgroundColor: "red", 
+    padding: 10, 
+    borderRadius: 8 
+  },
+  buttonText: 
+  { 
+    color: "#fff", 
+    fontWeight: "bold" 
+  },
 });
-
 export default ProductScreen;

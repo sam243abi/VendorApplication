@@ -116,26 +116,31 @@ const NotificationScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: 
+  {
     flex: 1,
     backgroundColor: "#f8f9fb",
   },
-  header: {
+  header: 
+  {
     backgroundColor: "#006d7d", 
     padding: 16,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  headerTitle: {
+  headerTitle: 
+  {
     fontSize: 18,
     fontWeight: "bold",
     color: "#fff",
   },
-  listContainer: {
+  listContainer: 
+  {
     padding: 16,
   },
-  notificationCard: {
+  notificationCard: 
+  {
     backgroundColor: "#ffffff",
     borderRadius: 10,
     padding: 16,
@@ -146,39 +151,45 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  selectedNotificationCard: {
+  selectedNotificationCard: 
+  {
     backgroundColor: "#e0f7fa", 
     borderColor: "#00796b",
     borderWidth: 1,
   },
-  notificationTitle: {
+  notificationTitle: 
+  {
     fontSize: 16,
     fontWeight: "bold",
     color: "#2d2d2d", 
     marginBottom: 8,
   },
-  notificationDetails: {
+  notificationDetails: 
+  {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 8,
   },
-  category: {
+  category: 
+  {
     fontSize: 14,
     color: "#7a7a7a", 
   },
-  arrow: {
+  arrow: 
+  {
     fontSize: 14,
     color: "#7a7a7a",
   },
-  item: {
+  item: 
+  {
     fontSize: 14,
     color: "#1792e8", 
     fontWeight: "600",
   },
-  timestamp: {
+  timestamp: 
+  {
     fontSize: 12,
     color: "#a3a3a3",
   },
 });
-
 export default NotificationScreen;

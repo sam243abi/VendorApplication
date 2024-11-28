@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  ProgressBarAndroid,
-  Modal,
-  ActivityIndicator,
-} from "react-native";
+import {View,Text,StyleSheet,Image,TouchableOpacity,ScrollView,ProgressBarAndroid,Modal,ActivityIndicator,} from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
 const UploadScreen = () => {
@@ -29,15 +19,11 @@ const UploadScreen = () => {
 
   const handleFileUpload = (fileId) => {
     setLoadingFileId(fileId);
-
-    // Simulate progress from 0% to 100%
     let progress = 0;
     const interval = setInterval(() => {
       progress += 10;
       if (progress >= 100) {
         clearInterval(interval);
-
-        // Move file from uploading to uploaded
         const uploadedFile = uploadingFiles.find((file) => file.id === fileId);
         setUploadingFiles(uploadingFiles.filter((file) => file.id !== fileId));
         setUploadedFiles([
@@ -45,14 +31,13 @@ const UploadScreen = () => {
           { id: uploadedFile.id, name: uploadedFile.name, size: uploadedFile.total, date: "Just now" },
         ]);
 
-        setLoadingFileId(null); // Hide loading screen
+        setLoadingFileId(null); 
       }
-    }, 300); // Simulate 300ms per 10% increment
+    }, 300); 
   };
 
   return (
     <View style={styles.container}>
-      {/* Custom Navigation Bar */}
       <View style={styles.navBar}>
         <TouchableOpacity
           style={[styles.tab, activeTab === "Uploading" && styles.activeTab]}
@@ -67,8 +52,6 @@ const UploadScreen = () => {
           <Text style={[styles.tabText, activeTab === "Uploaded" && styles.activeText]}>Uploaded Files</Text>
         </TouchableOpacity>
       </View>
-
-      {/* Content */}
       <ScrollView>
         {activeTab === "Uploaded" ? (
           uploadedFiles.map((file) => (
@@ -113,8 +96,6 @@ const UploadScreen = () => {
           ))
         )}
       </ScrollView>
-
-      {/* Loading Modal */}
       <Modal transparent visible={loadingFileId !== null}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>

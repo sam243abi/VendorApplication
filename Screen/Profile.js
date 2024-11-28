@@ -7,15 +7,12 @@ const Profile = () => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Header */}
         <View style={styles.header}>
           <Text style={styles.title}>Profile</Text>
           <TouchableOpacity onPress={() => {}}>
             <Text style={styles.editIcon}>✏️</Text>
           </TouchableOpacity>
         </View>
-
-        {/* Profile Details */}
         <View style={[styles.section, { minHeight: 220 }]}>
           <Image
             source={{
@@ -72,7 +69,6 @@ const ProfileWithTabs = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-
           if (route.name === "Dashboard") iconName = focused ? "home" : "home-outline";
           else if (route.name === "Orders") iconName = focused ? "list" : "list-outline";
           else if (route.name === "Products") iconName = focused ? "pricetag" : "pricetag-outline";
@@ -96,30 +92,36 @@ const ProfileWithTabs = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container:
+  {
     flex: 1,
     backgroundColor: "#f8f9fa",
   },
-  scrollContent: {
+  scrollContent: 
+  {
     padding: 20,
     paddingBottom: 80,
   },
-  header: {
+  header:
+  {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
   },
-  title: {
+  title: 
+  {
     fontSize: 24,
     fontWeight: "bold",
     color: "#007bff",
   },
-  editIcon: {
+  editIcon: 
+  {
     fontSize: 20,
     color: "#007bff",
   },
-  section: {
+  section: 
+  {
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 15,
@@ -130,43 +132,51 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     elevation: 5,
   },
-  profileImage: {
+  profileImage: 
+  {
     width: 80,
     height: 80,
     borderRadius: 40,
     marginBottom: 10,
     alignSelf: "center",
   },
-  name: {
+  name: 
+  {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
   },
-  email: {
+  email: 
+  {
     fontSize: 14,
     color: "gray",
     textAlign: "center",
     marginBottom: 10,
   },
-  description: {
+  description: 
+  {
     fontSize: 14,
     color: "gray",
     textAlign: "center",
   },
-  sectionTitle: {
+  sectionTitle: 
+  {
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 10,
   },
-  sectionText: {
+  sectionText: 
+  {
     fontSize: 14,
     color: "gray",
     marginBottom: 5,
   },
-  label: {
+  label: 
+  {
     fontWeight: "bold",
   },
-  changePasswordButton: {
+  changePasswordButton: 
+  {
     backgroundColor: "#fff",
     paddingVertical: 15,
     borderRadius: 10,
@@ -178,27 +188,30 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     elevation: 5,
   },
-  buttonText: {
+  buttonText: 
+  {
     fontSize: 16,
     fontWeight: "bold",
     color: "#007bff",
   },
-  logoutButton: {
+  logoutButton: 
+  {
     backgroundColor: "#ff4d4d",
     paddingVertical: 15,
     borderRadius: 10,
     alignItems: "center",
   },
-  logoutButtonText: {
+  logoutButtonText: 
+  {
     fontSize: 16,
     fontWeight: "bold",
     color: "#fff",
   },
-  page: {
+  page: 
+  {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
 });
-
 export default ProfileWithTabs;

@@ -39,15 +39,12 @@ const AllReportScreen = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Top blue bar */}
       <View style={styles.topBar}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.backText}>←</Text>
         </TouchableOpacity>
         <Text style={styles.headerText}>All Reports</Text>
       </View>
-
-      {/* Navigation tabs */}
       <View style={styles.tabContainer}>
         {tabs.map((tab, index) => (
           <TouchableOpacity
@@ -66,18 +63,13 @@ const AllReportScreen = ({ navigation }) => {
           </TouchableOpacity>
         ))}
       </View>
-
-      {/* Report Cards */}
       {data.map((item) => (
         <View key={item.id} style={styles.card}>
           <Image source={item.icon} style={styles.icon} />
           <View style={styles.cardContent}>
-            {/* Left: Percentage */}
             <View style={styles.leftContent}>
               <Text style={styles.percentage}>{item.percentage}</Text>
             </View>
-
-            {/* Right: Value and Title */}
             <View style={styles.rightContent}>
               <Text style={styles.value}>{item.value}</Text>
               <Text style={styles.title}>{item.title}</Text>
@@ -93,44 +85,53 @@ const AllReportScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: 
+  {
     flex: 1,
     backgroundColor: "#f5f5f5",
   },
-  topBar: {
+  topBar: 
+  {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#0047ab",
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
-  backText: {
+  backText: 
+  {
     color: "white",
     fontSize: 18,
     marginRight: 8,
   },
-  headerText: {
+  headerText: 
+  {
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
   },
-  tabContainer: {
+  tabContainer: 
+  {
     flexDirection: "row",
     backgroundColor: "#0047ab",
     justifyContent: "space-around",
   },
-  tab: {
+  tab: 
+  {
     paddingVertical: 10,
   },
-  tabText: {
+  tabText: 
+  {
     fontSize: 14,
     color: "white",
   },
-  selectedTabText: {
+  selectedTabText: 
+  {
     fontWeight: "bold",
     color: "#90ee90",
   },
-  card: {
+  card: 
+  {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
@@ -140,40 +141,48 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     elevation: 3,
   },
-  icon: {
+  icon: 
+  {
     width: 40,
     height: 40,
     marginRight: 10,
   },
-  cardContent: {
+  cardContent: 
+  {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  leftContent: {
+  leftContent: 
+  {
     flex: 1,
   },
-  percentage: {
+  percentage: 
+  {
     color: "#28a745",
     fontWeight: "bold",
     fontSize: 16,
   },
-  rightContent: {
+  rightContent: 
+  {
     alignItems: "flex-end",
-    justifyContent: "flex-start", // Moves content upwards
+    justifyContent: "flex-start", 
     marginRight: 8,
   },
-  value: {
+  value: 
+  {
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 4, // Add spacing between value and title
+    marginBottom: 4, 
   },
-  title: {
+  title: 
+  {
     fontSize: 14,
     color: "#666",
   },
-  downloadButton: {
+  downloadButton: 
+  {
     padding: 8,
     backgroundColor: "#e8f5e9",
     borderRadius: 4,
