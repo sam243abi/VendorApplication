@@ -28,7 +28,6 @@ const EarningScreen = () => {
       {/* This Month and Last Month Cards */}
       <Text style={styles.subHeader}>This Month</Text>
       <View style={styles.cardContainer}>
-        {/* Card 1: This Month */}
         <View style={styles.card}>
           <View style={styles.cardContent}>
             <Image
@@ -42,8 +41,6 @@ const EarningScreen = () => {
           </View>
           <Text style={styles.percentageText}>+5%</Text>
         </View>
-
-        {/* Card 2: Last Month Earnings */}
         <View style={styles.card}>
           <View style={styles.cardContent}>
             <Image
@@ -117,7 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 15,
     width: "48%",
-    height: 120, // Increased height
+    height: 120,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -155,7 +152,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     marginTop: 20,
-    height: 180, // Increased height for larger graph
+    height: 180,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
@@ -170,7 +167,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   graphIconLarger: {
-    width: 200, // Larger graph
+    width: 200,
     height: 140,
     position: "absolute",
     right: 20,
