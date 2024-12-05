@@ -1,217 +1,196 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-const Profile = () => {
+const orders = [
+  {
+    id: '1',
+    orderNumber: '#20211028-07104354',
+    date: '2 Nov 2021 04:24 PM',
+    customerName: 'Ankit Gajera',
+    amount: '₹230.44',
+    status: 'Paid',
+    deliveryStatus: 'Placed',
+  },
+  {
+    id: '2',
+    orderNumber: '#20211028-07104354',
+    date: '2 Nov 2021 04:24 PM',
+    customerName: 'Ankit Gajera',
+    amount: '₹230.44',
+    status: 'Paid',
+    deliveryStatus: 'Placed',
+  },
+  {
+    id: '3',
+    orderNumber: '#20211028-07104354',
+    date: '2 Nov 2021 04:24 PM',
+    customerName: 'Ankit Gajera',
+    amount: '₹230.44',
+    status: 'Paid',
+    deliveryStatus: 'Placed',
+  },
+];
+
+const Orders = ({ navigation }) => {
+  const renderOrderItem = ({ item }) => (
+    <TouchableOpacity style={styles.card} onPress={() => alert('Navigated!')}>
+      <View style={styles.cardContent}>
+        <View style={styles.orderInfo}>
+          <Text style={styles.orderNumber}>{item.orderNumber}</Text>
+          <Text style={styles.date}>{item.date}</Text>
+          <Text style={styles.customerLabel}>Customer Name</Text>
+          <Text style={styles.customerName}>{item.customerName}</Text>
+          <Text style={styles.deliveryLabel}>Delivery Status</Text>
+          <Text style={styles.deliveryStatus}>{item.deliveryStatus}</Text>
+        </View>
+        <View style={styles.amountInfo}>
+          <Text style={styles.amount}>{item.amount}</Text>
+          <Text style={styles.status}>{item.status}</Text>
+          <Image
+            style={styles.invoiceIcon}
+            source={{
+              uri: 'https://cdn-icons-png.flaticon.com/512/1257/1257806.png',
+            }}
+          />
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Profile</Text>
-          <TouchableOpacity onPress={() => {}}>
-            <Text style={styles.editIcon}>✏️</Text>
-          </TouchableOpacity>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Orders</Text>
+        <View style={styles.headerIcons}>
+          <Ionicons name="car-outline" size={24} color="#000" />
+          <Ionicons name="notifications-outline" size={24} color="#000" />
         </View>
-        <View style={[styles.section, { minHeight: 220 }]}>
-          <Image
-            source={{
-              uri: "https://via.placeholder.com/80", 
-            }}
-            style={styles.profileImage}
-          />
-          <Text style={styles.name}>Manish Harsh</Text>
-          <Text style={styles.email}>manish@gmail.com</Text>
-          <Text style={styles.description}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s.
-          </Text>
-        </View>
-
-        <View style={[styles.section, { minHeight: 300 }]}>
-          <Text style={styles.sectionTitle}>Communication Address</Text>
-          <Text style={styles.sectionText}>
-            <Text style={styles.label}>Address: </Text>301B, Sector C, Gandhinagar
-          </Text>
-          <Text style={styles.sectionText}>
-            <Text style={styles.label}>Country: </Text>India
-          </Text>
-          <Text style={styles.sectionText}>
-            <Text style={styles.label}>City: </Text>Gandhinagar
-          </Text>
-          <Text style={styles.sectionText}>
-            <Text style={styles.label}>Postal Code: </Text>234232
-          </Text>
-        </View>
-
-        <TouchableOpacity style={styles.changePasswordButton}>
-          <Text style={styles.buttonText}>Change Password</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.logoutButton}>
-          <Text style={styles.logoutButtonText}>Logout</Text>
-        </TouchableOpacity>
-      </ScrollView>
+      </View>
+      {/* Tabs */}
+      <View style={styles.tabs}>
+        <Text style={styles.activeTab}>Total Orders</Text>
+        <Text style={styles.inactiveTab}>Pending Order</Text>
+        <Text style={styles.inactiveTab}>Placed Order</Text>
+      </View>
+      {/* Orders List */}
+      <FlatList
+        data={orders}
+        keyExtractor={(item) => item.id}
+        renderItem={renderOrderItem}
+      />
     </View>
   );
 };
 
-const Tab = createBottomTabNavigator();
-
-const Dashboard = () => <View style={styles.page}><Text>Dashboard Screen</Text></View>;
-const Orders = () => <View style={styles.page}><Text>Orders Screen</Text></View>;
-const Products = () => <View style={styles.page}><Text>Products Screen</Text></View>;
-const Earnings = () => <View style={styles.page}><Text>Earnings Screen</Text></View>;
-
-const ProfileWithTabs = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          if (route.name === "Dashboard") iconName = focused ? "home" : "home-outline";
-          else if (route.name === "Orders") iconName = focused ? "list" : "list-outline";
-          else if (route.name === "Products") iconName = focused ? "pricetag" : "pricetag-outline";
-          else if (route.name === "Earnings") iconName = focused ? "wallet" : "wallet-outline";
-          else if (route.name === "Profile") iconName = focused ? "person" : "person-outline";
-
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: "#007bff",
-        tabBarInactiveTintColor: "gray",
-        headerShown: false,
-      })}
-    >
-      <Tab.Screen name="Dashboard" component={Dashboard} />
-      <Tab.Screen name="Orders" component={Orders} />
-      <Tab.Screen name="Products" component={Products} />
-      <Tab.Screen name="Earnings" component={Earnings} />
-      <Tab.Screen name="Profile" component={Profile} />
-    </Tab.Navigator>
-  );
-};
-
 const styles = StyleSheet.create({
-  container:
-  {
+  container: {
     flex: 1,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: '#f8f8f8',
+    paddingHorizontal: 16,
   },
-  scrollContent: 
-  {
-    padding: 20,
-    paddingBottom: 80,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 16,
   },
-  header:
-  {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  title: 
-  {
+  headerTitle: {
     fontSize: 24,
-    fontWeight: "bold",
-    color: "#007bff",
+    fontWeight: 'bold',
+    color: '#000',
   },
-  editIcon: 
-  {
-    fontSize: 20,
-    color: "#007bff",
+  headerIcons: {
+    flexDirection: 'row',
+    gap: 16,
   },
-  section: 
-  {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 20,
-    shadowColor: "#000",
+  tabs: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 16,
+  },
+  activeTab: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1a73e8',
+    borderBottomWidth: 2,
+    borderBottomColor: '#1a73e8',
+    paddingBottom: 8,
+  },
+  inactiveTab: {
+    fontSize: 16,
+    color: '#888',
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: '#000',
     shadowOpacity: 0.1,
-    shadowRadius: 10,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 5,
+    shadowRadius: 4,
+    elevation: 2,
   },
-  profileImage: 
-  {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginBottom: 10,
-    alignSelf: "center",
+  cardContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  name: 
-  {
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
+  orderInfo: {
+    flex: 3,
   },
-  email: 
-  {
-    fontSize: 14,
-    color: "gray",
-    textAlign: "center",
-    marginBottom: 10,
-  },
-  description: 
-  {
-    fontSize: 14,
-    color: "gray",
-    textAlign: "center",
-  },
-  sectionTitle: 
-  {
+  orderNumber: {
     fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 10,
+    fontWeight: 'bold',
+    color: '#000',
   },
-  sectionText: 
-  {
+  date: {
     fontSize: 14,
-    color: "gray",
-    marginBottom: 5,
+    color: '#666',
+    marginVertical: 4,
   },
-  label: 
-  {
-    fontWeight: "bold",
+  customerLabel: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 8,
   },
-  changePasswordButton: 
-  {
-    backgroundColor: "#fff",
-    paddingVertical: 15,
-    borderRadius: 10,
-    alignItems: "center",
-    marginBottom: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 5,
+  customerName: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#000',
   },
-  buttonText: 
-  {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#007bff",
+  deliveryLabel: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 8,
   },
-  logoutButton: 
-  {
-    backgroundColor: "#ff4d4d",
-    paddingVertical: 15,
-    borderRadius: 10,
-    alignItems: "center",
+  deliveryStatus: {
+    fontSize: 14,
+    color: '#1a73e8',
+    fontWeight: 'bold',
   },
-  logoutButtonText: 
-  {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#fff",
-  },
-  page: 
-  {
+  amountInfo: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    alignItems: 'flex-end',
+  },
+  amount: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  status: {
+    fontSize: 14,
+    color: '#1a73e8',
+    fontWeight: 'bold',
+    marginVertical: 4,
+  },
+  invoiceIcon: {
+    width: 24,
+    height: 24,
   },
 });
-export default ProfileWithTabs;
+
+export default Orders;
