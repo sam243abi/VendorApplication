@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import {View,Text,StyleSheet,FlatList,Image,TouchableOpacity,Switch,TextInput,Modal,Alert,} from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  Switch,
+  TextInput,
+  Modal,
+  Alert,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const productImage = require("../assets/water_bottle.png");
@@ -42,25 +53,33 @@ const ProductScreen = () => {
   const togglePublished = (id) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product.id === id ? { ...product, published: !product.published } : product
+        product.id === id
+          ? { ...product, published: !product.published }
+          : product
       )
     );
   };
 
   const deleteProduct = (id) => {
-    Alert.alert("Delete Product", "Are you sure you want to delete this product?", [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "Delete",
-        style: "destructive",
-        onPress: () => {
-          setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+    Alert.alert(
+      "Delete Product",
+      "Are you sure you want to delete this product?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
         },
-      },
-    ]);
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            setProducts((prevProducts) =>
+              prevProducts.filter((product) => product.id !== id)
+            );
+          },
+        },
+      ]
+    );
   };
 
   const editProduct = (product) => {
@@ -173,10 +192,16 @@ const ProductScreen = () => {
               }
             />
             <View style={styles.modalButtons}>
-              <TouchableOpacity style={styles.saveButton} onPress={saveEditedProduct}>
+              <TouchableOpacity
+                style={styles.saveButton}
+                onPress={saveEditedProduct}
+              >
                 <Text style={styles.buttonText}>Save</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.cancelButton} onPress={cancelEditing}>
+              <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={cancelEditing}
+              >
                 <Text style={styles.buttonText}>Cancel</Text>
               </TouchableOpacity>
             </View>
@@ -188,147 +213,116 @@ const ProductScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: 
-  { flex: 1, 
-    backgroundColor: "#f4f4f4" 
+  container: { flex: 1, backgroundColor: "#f4f4f4" },
+  header: {
+    padding: 16,
+    backgroundColor: "#007BFF",
+    alignItems: "center",
   },
-  header: 
-  { 
-    padding: 16, 
-    backgroundColor: "#007BFF", 
-    alignItems: "center" 
+  headerText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
   },
-  headerText: 
-  { 
-    color: "#fff", 
-    fontSize: 18, 
-    fontWeight: "bold" 
+  list: {
+    padding: 16,
   },
-  list: 
-  { 
-    padding: 16 
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    marginBottom: 16,
+    padding: 16,
   },
-  card: 
-  { 
-    backgroundColor: "#fff", 
-    borderRadius: 8, 
-    marginBottom: 16, 
-    padding: 16 
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  row: 
-  { 
-    flexDirection: "row", 
-    alignItems: "center" 
+  image: {
+    width: 60,
+    height: 60,
+    marginRight: 16,
   },
-  image: 
-  { 
-    width: 60, 
-    height: 60, 
-    marginRight: 16 
+  details: {
+    flex: 1,
   },
-  details: 
-  { 
-    flex: 1 
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
   },
-  title: 
-  { 
-    fontSize: 16, 
-    fontWeight: "bold" 
+  category: {
+    fontSize: 14,
+    color: "#888",
   },
-  category: 
-  { 
-    fontSize: 14, 
-    color: "#888" 
+  priceSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 16,
   },
-  priceSection: 
-  { 
-    flexDirection: "row", 
-    justifyContent: "space-between", 
-    marginTop: 16 
+  priceBlock: {
+    alignItems: "center",
   },
-  priceBlock: 
-  { 
-    alignItems: "center" 
+  priceHeading: {
+    fontSize: 14,
+    color: "#888",
   },
-  priceHeading: 
-  { 
-    fontSize: 14, 
-    color: "#888" 
+  priceValue: {
+    fontSize: 14,
+    fontWeight: "bold",
   },
-  priceValue: 
-  { 
-    fontSize: 14, 
-    fontWeight: "bold" 
+  bottomRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 16,
   },
-  bottomRow: 
-  { 
-    flexDirection: "row", 
-    justifyContent: "space-between", 
-    marginTop: 16 
+  switchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  switchContainer: 
-  { 
-    flexDirection: "row", 
-    alignItems: "center" 
+  publishedText: {
+    marginLeft: 8,
   },
-  publishedText: 
-  { 
-    marginLeft: 8 
+  actions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
   },
-  actions: 
-  {
-     flexDirection: "row", 
-    alignItems: "center", 
-    gap: 16 
-  },
-  modalContainer: 
-  {
+  modalContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  modalContent: 
-  {
+  modalContent: {
     width: "90%",
     backgroundColor: "#fff",
     borderRadius: 8,
     padding: 16,
   },
-  modalTitle: 
-  { fontSize: 18, 
-    fontWeight: "bold", 
-    marginBottom: 16 
-  },
-  input: 
-  {
+  modalTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 16 },
+  input: {
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 8,
     padding: 8,
     marginBottom: 16,
   },
-  modalButtons: 
-  { 
-    flexDirection: "row", 
-    justifyContent: "space-between" 
+  modalButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  saveButton: 
-  { 
-    backgroundColor: "#007BFF", 
-    padding: 10, 
-    borderRadius: 8 
+  saveButton: {
+    backgroundColor: "#007BFF",
+    padding: 10,
+    borderRadius: 8,
   },
-  cancelButton: 
-  { 
-    backgroundColor: "red", 
-    padding: 10, 
-    borderRadius: 8 
+  cancelButton: {
+    backgroundColor: "red",
+    padding: 10,
+    borderRadius: 8,
   },
-  buttonText: 
-  { 
-    color: "#fff", 
-    fontWeight: "bold" 
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
 export default ProductScreen;

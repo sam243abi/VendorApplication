@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,73 +8,177 @@ import {
   Image,
 } from "react-native";
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const EarningScreen = () => {
+const EarningScreen = ({ navigation }) => {
+  const [activeNav, setActiveNav] = useState("Earning");
+
+  const handleNavPress = (screenName) => {
+    setActiveNav(screenName);
+    navigation.navigate(screenName);
+  };
+
   return (
-    <ScrollView style={styles.container}>
-      {/* Earnings Header with Notification and Support Icons */}
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>Earnings</Text>
-        <View style={styles.iconContainer}>
-          <TouchableOpacity>
-            <MaterialIcons name="support-agent" size={24} color="#00478F" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome name="bell" size={24} color="#00478F" />
-          </TouchableOpacity>
+    <>
+      {/* Earnings Section */}
+      <ScrollView style={styles.container}>
+        {/* Header */}
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}>Earnings</Text>
+          <View style={styles.iconContainer}>
+            <TouchableOpacity>
+              <MaterialIcons name="support-agent" size={24} color="#00478F" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Notification")}
+            >
+              <FontAwesome name="bell" size={24} color="#00478F" />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
 
-      {/* This Month and Last Month Cards */}
-      <Text style={styles.subHeader}>This Month</Text>
-      <View style={styles.cardContainer}>
-        <View style={styles.card}>
+        {/* This Month and Last Month Earnings */}
+        <Text style={styles.subHeader}>This Month</Text>
+        <View style={styles.cardContainer}>
+          <View style={styles.card}>
+            <View style={styles.cardContent}>
+              <Image
+                source={require("../assets/cal.png")}
+                style={styles.cardIconLarge}
+              />
+              <View>
+                <Text style={styles.cardValue}>₹6002</Text>
+                <Text style={styles.cardDescription}>This Month</Text>
+              </View>
+            </View>
+            <Text style={styles.percentageText}>+5%</Text>
+          </View>
+          <View style={styles.card}>
+            <View style={styles.cardContent}>
+              <Image
+                source={require("../assets/calender.png")}
+                style={styles.cardIconLarge}
+              />
+              <View>
+                <Text style={styles.cardValue}>₹10000</Text>
+                <Text style={styles.cardDescription}>Last Month Earnings</Text>
+              </View>
+            </View>
+            <Text style={styles.percentageText}>+15%</Text>
+          </View>
+        </View>
+
+        {/* Total Earnings Section */}
+        <View style={styles.largeCard}>
           <View style={styles.cardContent}>
             <Image
-              source={require("../assets/cal.png")}
-              style={styles.cardIconLarge}
+              source={require("../assets/gra.png")}
+              style={styles.largeCardIcon}
             />
             <View>
-              <Text style={styles.cardValue}>₹6002</Text>
-              <Text style={styles.cardDescription}>This Month</Text>
+              <Text style={styles.largeCardValue}>₹10000</Text>
+              <Text style={styles.largeCardDescription}>Total Earnings</Text>
             </View>
           </View>
-          <Text style={styles.percentageText}>+5%</Text>
-        </View>
-        <View style={styles.card}>
-          <View style={styles.cardContent}>
-            <Image
-              source={require("../assets/calender.png")}
-              style={styles.cardIconLarge}
-            />
-            <View>
-              <Text style={styles.cardValue}>₹10000</Text>
-              <Text style={styles.cardDescription}>Last Month Earnings</Text>
-            </View>
-          </View>
-          <Text style={styles.percentageText}>+15%</Text>
-        </View>
-      </View>
-
-      {/* Total Earnings */}
-      <View style={styles.largeCard}>
-        <View style={styles.cardContent}>
           <Image
-            source={require("../assets/gra.png")}
-            style={styles.largeCardIcon}
+            source={require("../assets/graph.png")}
+            style={styles.graphIconLarger}
           />
-          <View>
-            <Text style={styles.largeCardValue}>₹10000</Text>
-            <Text style={styles.largeCardDescription}>Total Earnings</Text>
-          </View>
+          <Text style={styles.percentageTextLarge}>+15%</Text>
         </View>
-        <Image
-          source={require("../assets/graph.png")}
-          style={styles.graphIconLarger}
-        />
-        <Text style={styles.percentageTextLarge}>+15%</Text>
+      </ScrollView>
+
+      {/* Bottom Navigation */}
+      <View style={styles.bottomNavigation}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("DashboardScreen")}
+        >
+          <Icon
+            name="view-dashboard"
+            size={24}
+            color={activeNav === "DashboardScreen" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "DashboardScreen" && styles.navActive,
+            ]}
+          >
+            Dashboard
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("order")}
+        >
+          <Icon
+            name="format-list-bulleted"
+            size={24}
+            color={activeNav === "Orders" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[styles.navText, activeNav === "Orders" && styles.navActive]}
+          >
+            Orders
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("product2")}
+        >
+          <Icon
+            name="archive-outline"
+            size={24}
+            color={activeNav === "product2" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "product2" && styles.navActive,
+            ]}
+          >
+            Products
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("Earning")}
+        >
+          <Icon
+            name="credit-card"
+            size={24}
+            color={activeNav === "Earning" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "Earning" && styles.navActive,
+            ]}
+          >
+            Earning
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("Profile")}
+        >
+          <Icon
+            name="account-outline"
+            size={24}
+            color={activeNav === "Profile" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "Profile" && styles.navActive,
+            ]}
+          >
+            Profile
+          </Text>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+    </>
   );
 };
 
@@ -189,6 +293,27 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     top: 20,
+  },
+  bottomNavigation: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#FFFFFF",
+    borderTopWidth: 1,
+    borderTopColor: "#E0E0E0",
+  },
+  navItem: {
+    alignItems: "center",
+    flex: 1,
+  },
+  navText: {
+    fontSize: 12,
+    color: "#064663",
+  },
+  navActive: {
+    color: "#0BC184",
+    fontWeight: "700",
   },
 });
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,86 +8,200 @@ import {
   ScrollView,
 } from "react-native";
 import { MaterialIcons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const Products2 = () => {
+const Products2 = ({ navigation }) => {
+  const [activeNav, setActiveNav] = useState("Products");
+
+  const handleNavPress = (screenName) => {
+    setActiveNav(screenName);
+    navigation.navigate(screenName);
+  };
+
   return (
-    <ScrollView style={styles.container}>
-      {/* Header */}
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>Products</Text>
-        <View style={styles.iconContainer}>
-          <TouchableOpacity>
-            <MaterialIcons name="support-agent" size={24} color="#00478F" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome name="bell" size={24} color="#00478F" />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* Action Buttons */}
-      <View style={styles.actionContainer}>
-        <TouchableOpacity style={styles.actionButton}>
-          <Image
-            source={require("../assets/add-product.png")}
-            style={styles.actionIcon}
-          />
-          <Text style={styles.actionText}>Add New Products</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
-          <Image
-            source={require("../assets/bulk-upload.png")}
-            style={styles.actionIcon}
-          />
-          <Text style={styles.actionText}>Bulk Upload Products</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButtonWide}>
-          <Image
-            source={require("../assets/demo-sheet.png")}
-            style={styles.actionIcon}
-          />
-          <Text style={styles.actionText}>Download Demo Sheet</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Product List Header */}
-      <View style={styles.productListHeader}>
-        <Text style={styles.subHeader}>Products List</Text>
-        <TouchableOpacity>
-          <Text style={styles.seeAllText}>See All Products</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Product Item */}
-      <View style={styles.productItem}>
-        <View style={styles.productIndex}>
-          <Text style={styles.indexText}>1</Text>
-        </View>
-        <View style={styles.productDetails}>
-          <Text style={styles.productName}>Water Botter</Text>
-          <Text style={styles.productCategory}>Kitchen & Dining › Bottles</Text>
-          <View style={styles.priceContainer}>
-            <Text style={styles.unitPrice}>Unit Price: ₹100.00</Text>
-            <Text style={styles.purchasePrice}>Purchase Price: ₹150.00</Text>
-            <Text style={styles.gst}>GST</Text>
+    <>
+      {/* Main Content */}
+      <ScrollView style={styles.container}>
+        {/* Header */}
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>Products</Text>
+          <View style={styles.iconContainer}>
+            {/* Notification Icon */}
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Notification")} // Navigate to Notification screen
+            >
+              <FontAwesome name="bell" size={24} color="#00478F" />
+            </TouchableOpacity>
           </View>
-          <Text style={styles.createdAt}>
-            Created At: 8 Sep 2021 08:44 PM
+        </View>
+
+        {/* Action Buttons */}
+        <View style={styles.actionContainer}>
+          <TouchableOpacity style={styles.actionButton}>
+            <Image
+              source={require("../assets/add-product.png")}
+              style={styles.actionIcon}
+            />
+            <Text style={styles.actionText}>Add New Products</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionButton}>
+            <Image
+              source={require("../assets/bulk-upload.png")}
+              style={styles.actionIcon}
+            />
+            <Text
+              style={styles.actionText}
+              onPress={() => navigation.navigate("Upload")}
+            >
+              Bulk Upload Products
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionButtonWide}>
+            <Image
+              source={require("../assets/demo-sheet.png")}
+              style={styles.actionIcon}
+            />
+            <Text style={styles.actionText}>Download Demo Sheet</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Product List Header */}
+        <View style={styles.productListHeader}>
+          <Text style={styles.subHeader}>Products List</Text>
+          <TouchableOpacity>
+            <Text
+              style={styles.seeAllText}
+              onPress={() => navigation.navigate("Product")}
+            >
+              See All Products
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Product Item */}
+        <View style={styles.productItem}>
+          <View style={styles.productIndex}>
+            <Text style={styles.indexText}>1</Text>
+          </View>
+          <View style={styles.productDetails}>
+            <Text style={styles.productName}>Water Bottle</Text>
+            <Text style={styles.productCategory}>
+              Kitchen & Dining › Bottles
+            </Text>
+            <View style={styles.priceContainer}>
+              <Text style={styles.unitPrice}>Unit Price: ₹100.00</Text>
+              <Text style={styles.purchasePrice}>Purchase Price: ₹150.00</Text>
+              <Text style={styles.gst}>GST</Text>
+            </View>
+            <Text style={styles.createdAt}>
+              Created At: 8 Sep 2021 08:44 PM
+            </Text>
+          </View>
+          <View style={styles.productStatus}>
+            <Text style={styles.statusText}>Published</Text>
+          </View>
+          <View style={styles.actionIcons}>
+            <TouchableOpacity>
+              <AntDesign name="edit" size={20} color="#007BFF" />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <AntDesign name="delete" size={20} color="#FF6347" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* Bottom Navigation */}
+      <View style={styles.bottomNavigation}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("DashboardScreen")}
+        >
+          <Icon
+            name="view-dashboard"
+            size={24}
+            color={activeNav === "DashboardScreen" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "DashboardScreen" && styles.navActive,
+            ]}
+          >
+            Dashboard
           </Text>
-        </View>
-        <View style={styles.productStatus}>
-          <Text style={styles.statusText}>Published</Text>
-        </View>
-        <View style={styles.actionIcons}>
-          <TouchableOpacity>
-            <AntDesign name="edit" size={20} color="#007BFF" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <AntDesign name="delete" size={20} color="#FF6347" />
-          </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("order")}
+        >
+          <Icon
+            name="format-list-bulleted"
+            size={24}
+            color={activeNav === "order" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[styles.navText, activeNav === "order" && styles.navActive]}
+          >
+            Orders
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("Products")}
+        >
+          <Icon
+            name="archive-outline"
+            size={24}
+            color={activeNav === "Products" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "Products" && styles.navActive,
+            ]}
+          >
+            Products
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("Earning")}
+        >
+          <Icon
+            name="credit-card"
+            size={24}
+            color={activeNav === "Earning" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "Earning" && styles.navActive,
+            ]}
+          >
+            Earning
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => handleNavPress("Profile")}
+        >
+          <Icon
+            name="account-outline"
+            size={24}
+            color={activeNav === "Profile" ? "#0BC184" : "#064663"}
+          />
+          <Text
+            style={[
+              styles.navText,
+              activeNav === "Profile" && styles.navActive,
+            ]}
+          >
+            Profile
+          </Text>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+    </>
   );
 };
 
@@ -252,6 +366,27 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 10,
     top: 15,
+  },
+  bottomNavigation: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#FFFFFF",
+    borderTopWidth: 1,
+    borderTopColor: "#E0E0E0",
+  },
+  navItem: {
+    alignItems: "center",
+    flex: 1,
+  },
+  navText: {
+    fontSize: 12,
+    color: "#064663",
+  },
+  navActive: {
+    color: "#0BC184",
+    fontWeight: "700",
   },
 });
 

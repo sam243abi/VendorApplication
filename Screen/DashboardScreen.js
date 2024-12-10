@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const DashboardScreen = () => {
   const navigation = useNavigation(); // Navigation object
@@ -32,7 +32,12 @@ const DashboardScreen = () => {
               <Text style={styles.icon}>💬</Text>
               <View style={styles.badge} />
             </TouchableOpacity>
-            <Text style={styles.icon}>🔔</Text>
+            <Text
+              style={styles.icon}
+              onPress={() => navigation.navigate("Notification")}
+            >
+              🔔
+            </Text>
           </View>
         </View>
 
@@ -59,7 +64,12 @@ const DashboardScreen = () => {
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>This Month</Text>
             <TouchableOpacity>
-              <Text style={styles.linkText}>All Report</Text>
+              <Text
+                style={styles.linkText}
+                onPress={() => navigation.navigate("AllReport")}
+              >
+                All Report
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.stats}>
@@ -76,7 +86,12 @@ const DashboardScreen = () => {
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>New Order</Text>
             <TouchableOpacity>
-              <Text style={styles.linkText}>See All Orders</Text>
+              <Text
+                style={styles.linkText}
+                onPress={() => navigation.navigate("order")}
+              >
+                See All Orders
+              </Text>
             </TouchableOpacity>
           </View>
           {/* OrderCard components */}
@@ -115,7 +130,7 @@ const DashboardScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.navItem}
-          onPress={() => handleNavPress("Product")}
+          onPress={() => handleNavPress("product2")}
         >
           <Icon name="archive-outline" size={24} color="#064663" />
           <Text style={styles.navText}>Products</Text>
@@ -130,7 +145,10 @@ const DashboardScreen = () => {
             color={activeNav === "Earning" ? "#0BC184" : "#064663"}
           />
           <Text
-            style={[styles.navText, activeNav === "Earning" && styles.navActive]}
+            style={[
+              styles.navText,
+              activeNav === "Earning" && styles.navActive,
+            ]}
           >
             Earning
           </Text>
